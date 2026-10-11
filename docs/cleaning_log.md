@@ -12,8 +12,8 @@ Every step in `notebooks/01_cleaning.ipynb` that changes or removes rows, with r
 | Active + Cleared rows combined (raw) | 646,015 |
 | Rows after the 2017 filter | 437,705 |
 | Rows after keeping the latest revision | 388,782 |
-| Final clean rows | 388,262 |
-| Distinct projects (`project_id`) | 206,516 |
+| Final clean rows | 388,263 |
+| Distinct projects (`project_id`) | 206,516 (from the previous run; confirm on next run) |
 
 ## Steps
 
@@ -23,7 +23,7 @@ Every step in `notebooks/01_cleaning.ipynb` that changes or removes rows, with r
 | 2 | Keep applications from 2017-01-01 onward | 646,015 | 437,705 | 208,310 | Project scope. The Cleared file includes permits applied for before 2017, so filtering on application date is required |
 | 3 | Drop exact duplicate rows | 437,705 | 437,705 | 0 | Identical rows add no information |
 | 4 | Keep latest revision per permit number | 437,705 | 388,782 | 48,923 | One row per permit. On a tie between files the Cleared copy is kept, because clearing happens after the active stage |
-| 5 | Drop admin record types | 388,782 | 388,262 | 520 | DCs DeferredFees, Toronto Buildings Contacts, Toronto Building Standard Attachments, Building Historical data - Converted are records, not construction |
+| 5 | Drop admin record types | 388,782 | 388,263 | 519 | DCs DeferredFees, Toronto Buildings Contacts, Toronto Building Standard Attachments, Building Historical data - Converted are records, not construction |
 
 ## Changes that do not remove rows
 
@@ -46,8 +46,8 @@ Every step in `notebooks/01_cleaning.ipynb` that changes or removes rows, with r
 - **Zero costs:** kept as published but excluded from value analysis via `cost_declared`.
 - **Blank postal codes:** permits kept for city-wide counts, excluded from FSA maps.
 - **Cancelled permits (33,324):** flagged with `is_cancelled`, not removed. _Decide in the Analyze phase whether to exclude them._
-- **Trade permits (175,371):** flagged with `is_related_permit`. 388,262 permits group into 206,516 projects.
+- **Trade permits (175,371):** flagged with `is_related_permit`. 388,263 permits group into about 206,500 projects.
 - **Revised permits:** median approval time is 23 days for revised permits vs 29 for originals. The gap is modest, so revisions are kept as is and flagged with `is_revision`.
 - **Blank postal codes:** concentrated in Conditional Permits (41% blank) and New Building permits (22% blank). FSA maps will under-count new buildings; state this as a limitation.
-- **Non-numeric revision numbers (7 rows):** sorted so they are never chosen as the latest revision.
+- **Non-numeric revision numbers (7 rows):** sorted so they are never chosen as the latest revision. This changed which row was kept for one admin-type permit, so step 5 removed 519 rows instead of 520.
 - **Partial permits** are mapped to New construction, on the assumption that they are staged permits for large new buildings (foundation, shoring, framing).
