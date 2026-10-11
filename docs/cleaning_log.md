@@ -12,7 +12,8 @@ Every step in `notebooks/01_cleaning.ipynb` that changes or removes rows, with r
 | Active + Cleared rows combined (raw) | 646,015 |
 | Rows after the 2017 filter | 437,705 |
 | Rows after keeping the latest revision | 388,782 |
-| Final clean rows (after admin types removed) | _TBD on next run_ |
+| Final clean rows | 388,262 |
+| Distinct projects (`project_id`) | 206,516 |
 
 ## Steps
 
@@ -22,7 +23,7 @@ Every step in `notebooks/01_cleaning.ipynb` that changes or removes rows, with r
 | 2 | Keep applications from 2017-01-01 onward | 646,015 | 437,705 | 208,310 | Project scope. The Cleared file includes permits applied for before 2017, so filtering on application date is required |
 | 3 | Drop exact duplicate rows | 437,705 | 437,705 | 0 | Identical rows add no information |
 | 4 | Keep latest revision per permit number | 437,705 | 388,782 | 48,923 | One row per permit. On a tie between files the Cleared copy is kept, because clearing happens after the active stage |
-| 5 | Drop admin record types | 388,782 | _TBD_ | _TBD_ | DCs DeferredFees, Toronto Buildings Contacts, Toronto Building Standard Attachments, Building Historical data - Converted are records, not construction |
+| 5 | Drop admin record types | 388,782 | 388,262 | 520 | DCs DeferredFees, Toronto Buildings Contacts, Toronto Building Standard Attachments, Building Historical data - Converted are records, not construction |
 
 ## Changes that do not remove rows
 
@@ -30,11 +31,12 @@ Every step in `notebooks/01_cleaning.ipynb` that changes or removes rows, with r
 |---|---|---|---|
 | All text columns | Trimmed leading and trailing spaces | n/a | Stops values like "M5V " and "M5V" counting as different |
 | `EST_CONST_COST` -> `est_cost` | Converted to number; placeholder text set to missing | 209,700 placeholder rows (219,380 missing in total, before the 2017 filter and dedupe) | Some rows hold "DO NOT UPDATE OR DELETE THIS INFO FIELD" instead of a cost. Not imputed, to avoid inventing values |
-| `cost_declared` | True when `est_cost` > 0 | 40,854 rows with cost exactly 0 treated as not declared | A real project rarely costs $0; value analyses use declared costs only |
+| `est_cost` overrides | Set to missing for 2 permits | 2 | A $1B sprinkler permit and a $500M retail interior teardown; descriptions do not fit the amounts |
+| `cost_declared` | True when `est_cost` > 0 | 40,854 rows with cost exactly 0 treated as not declared; 128,548 rows had a declared cost before overrides | A real project rarely costs $0; value analyses use declared costs only |
 | `POSTAL` -> `fsa` | Upper-cased, first 3 characters, must match M + digit + letter | 24,630 blank postal codes; no other invalid values | Territory unit for the analysis |
 | `approval_days` | Negative values set to missing | 2 | Issue date before application date is a data error |
 | `work_category` | Mapped from `WORK` values, falling back to `PERMIT_TYPE` | n/a | Categories: New construction, Addition, Renovation / alteration, Demolition, Building services, Other. Full mapping in notebook section 7 |
-| `sector` | Keyword rules on `STRUCTURE_TYPE`; "Other" and "First Party" set to Unknown | n/a | Meaning of those two values is unclear, so they are not guessed |
+| `sector` | Keyword rules on `STRUCTURE_TYPE`, plus manual overrides (Duplex, Triplex, Converted House, Student Residence and others to Residential); "Other", "First Party", "Third Party" set to Unknown | n/a | Meaning of those two values is unclear, so they are not guessed |
 | `is_related_permit`, `project_id` | Flag trade permits ("Building Permit Related" work) and group permits by number without the type code | n/a | About 175,000 trade permits would otherwise inflate activity counts. The project link is inferred from the permit number format |
 
 ## Decisions and open questions
@@ -43,6 +45,9 @@ Every step in `notebooks/01_cleaning.ipynb` that changes or removes rows, with r
 - **Active file has no completed dates:** `COMPLETED_DATE` was blank on all 202,298 Active rows.
 - **Zero costs:** kept as published but excluded from value analysis via `cost_declared`.
 - **Blank postal codes:** permits kept for city-wide counts, excluded from FSA maps.
-- **Cancelled permits:** flagged with `is_cancelled`, not removed. _Decide in the Analyze phase whether to exclude them._
+- **Cancelled permits (33,324):** flagged with `is_cancelled`, not removed. _Decide in the Analyze phase whether to exclude them._
+- **Trade permits (175,371):** flagged with `is_related_permit`. 388,262 permits group into 206,516 projects.
+- **Revised permits:** median approval time is 23 days for revised permits vs 29 for originals. The gap is modest, so revisions are kept as is and flagged with `is_revision`.
+- **Blank postal codes:** concentrated in Conditional Permits (41% blank) and New Building permits (22% blank). FSA maps will under-count new buildings; state this as a limitation.
+- **Non-numeric revision numbers (7 rows):** sorted so they are never chosen as the latest revision.
 - **Partial permits** are mapped to New construction, on the assumption that they are staged permits for large new buildings (foundation, shoring, framing).
-- _Still open: whether revised permits distort approval days; whether the largest declared costs are typos._
