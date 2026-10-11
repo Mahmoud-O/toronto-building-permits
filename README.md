@@ -40,7 +40,7 @@ toronto-building-permits/
   data/clean/          cleaned table (not committed; rebuilt by 01_cleaning.ipynb)
   notebooks/
     01_cleaning.ipynb  Process phase
-    02_analysis.ipynb  Analyze phase (to come)
+    02_analysis.ipynb  Analyze phase
   outputs/figures/
   outputs/summary_tables/
   docs/
@@ -65,7 +65,7 @@ jupyter notebook notebooks\01_cleaning.ipynb
 | Phase | Status | Output |
 |---|---|---|
 | Ask, Prepare | Done | Case study document |
-| Process | In progress | `scripts/download_data.py`, `notebooks/01_cleaning.ipynb`, `docs/` |
-| Analyze | Not started | `notebooks/02_analysis.ipynb`, `outputs/summary_tables/` |
+| Process | Done | `scripts/download_data.py`, `notebooks/01_cleaning.ipynb`, `docs/` |
+| Analyze | In progress | `notebooks/02_analysis.ipynb`, `outputs/summary_tables/` |
 | Share | Not started | Tableau Public dashboard |
 | Act | Not started | Write-up, slide deck, portfolio page |
