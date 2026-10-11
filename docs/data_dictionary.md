@@ -41,5 +41,7 @@ Column names and published types below come from the City of Toronto Open Data A
 | `is_cancelled` | bool | True when `STATUS` contains "cancel" |
 | `is_revision` | bool | True when the kept row is revision 01 or higher |
 | `sector` | text | Residential, Non-residential, Mixed use or Unknown, from `STRUCTURE_TYPE` keywords |
-| `work_category` | text | New construction, Addition, Renovation / alteration, Demolition or Other, from `WORK` keywords |
+| `work_category` | text | New construction, Addition, Renovation / alteration, Demolition, Building services or Other. Mapped from `WORK`, with `PERMIT_TYPE` as fallback |
+| `project_id` | text | `PERMIT_NUM` without the final type code, e.g. "24 110570". Groups related permits (inferred) |
+| `is_related_permit` | bool | True when `WORK` starts with "Building Permit Related" (plumbing, HVAC, drain or fire permits tied to a building permit) |
 | `source` | text | "active" or "cleared": which file the kept row came from |
