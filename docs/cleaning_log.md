@@ -7,6 +7,8 @@ Every step in `notebooks/01_cleaning.ipynb` that changes or removes rows, with r
 | Item | Value |
 |---|---|
 | Download date (UTC) | _from data/raw/download_manifest.json_ |
+| `active_permits.csv` size | 68.3 MB |
+| `cleared_permits_since_2017.csv` size | 149.6 MB |
 | Active + Cleared rows combined (raw) | 646,015 |
 | Rows after the 2017 filter | 437,705 |
 | Rows after keeping the latest revision | 388,782 |
