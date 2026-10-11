@@ -18,7 +18,7 @@ Column names and published types below come from the City of Toronto Open Data A
 | `WARD_GRID` | text | Ward and grid reference, e.g. "S0423" **(confirm)** |
 | `APPLICATION_DATE` | date | Date the permit application was made |
 | `ISSUED_DATE` | date | Date the permit was issued (blank if not yet issued) |
-| `COMPLETED_DATE` | date | Date the permit was completed or closed **(confirm)** |
+| `COMPLETED_DATE` | date | Date the permit was completed or closed **(confirm)**. Always blank in the Active file |
 | `STATUS` | text | Current status, e.g. "Permit Issued", "Inspection", "Closed", "Superseded" |
 | `DESCRIPTION` | text | Free-text description of the work |
 | `CURRENT_USE`, `PROPOSED_USE` | text | Use of the property before and after the work |
@@ -37,6 +37,9 @@ Column names and published types below come from the City of Toronto Open Data A
 | `app_year_month` | date | First day of the application month, for monthly trends |
 | `approval_days` | float | `ISSUED_DATE` minus `APPLICATION_DATE` in days; missing if not issued or negative |
 | `est_cost` | float | `EST_CONST_COST` as a number; missing where the source is not numeric |
+| `cost_declared` | bool | True when `est_cost` is above 0. Use for value analysis |
+| `is_cancelled` | bool | True when `STATUS` contains "cancel" |
+| `is_revision` | bool | True when the kept row is revision 01 or higher |
 | `sector` | text | Residential, Non-residential, Mixed use or Unknown, from `STRUCTURE_TYPE` keywords |
 | `work_category` | text | New construction, Addition, Renovation / alteration, Demolition or Other, from `WORK` keywords |
 | `source` | text | "active" or "cleared": which file the kept row came from |
