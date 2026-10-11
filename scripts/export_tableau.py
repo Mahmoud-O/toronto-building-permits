@@ -47,6 +47,9 @@ def main() -> None:
         "permit_num": demand["PERMIT_NUM"],
         "project_id": demand["project_id"],
         "fsa": demand["fsa"],
+        # Tableau guesses the country of a postcode from your computer's locale,
+        # so "M4S" can be read as a US ZIP. A Country column fixes that.
+        "country": "Canada",
         "application_date": demand["APPLICATION_DATE"].dt.date,
         "application_month": demand["app_year_month"].dt.date,
         "application_year": demand["app_year"],
