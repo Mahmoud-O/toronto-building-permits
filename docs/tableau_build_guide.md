@@ -61,7 +61,12 @@ Colours: use one consistent palette (checked for colour-blind readers), always i
 | Map (low to high) | `#cde2fb` to `#104281` |
 
 ### Sheet 1: Value map
-1. Double-click `fsa`. Tableau draws a map. If it shows "unknown" locations, use **Map > Edit Locations** and set Country/Region to **Canada**.
+1. Tell Tableau the FSAs are Canadian, otherwise it reads "M4S" as a US ZIP code and draws an empty world map:
+   - Create a calculated field `Country` with the formula `"Canada"`.
+   - Right-click `Country` > **Geographic Role > Country/Region**.
+   - Drag `Country` to **Detail**, then double-click `fsa`.
+   - In Tableau Desktop or Tableau Public Desktop you can instead use **Map > Edit Locations** and set Country/Region to **Canada**.
+   - Check the "unknown" indicator at the bottom right of the map. A few unknowns are fine (blank FSAs); most FSAs unknown means the country is still not set.
 2. Change the mark type to **Map** (filled).
 3. Drag `Value Recent` to **Colour**. Edit colours: Sequential, custom from `#cde2fb` to `#104281`.
 4. Drag `Permits Recent`, `Permit Growth` and `Value Recent` to **Tooltip**.
