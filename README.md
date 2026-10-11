@@ -30,6 +30,10 @@ Scope: permits applied for from 1 January 2017 onward. The two datasets are comb
 
 **Known limitations:** permits signal intent, not completed construction; declared cost is self-reported and missing for many trade permits; dwelling units lost is rarely filled in; large projects carry several related permits that can inflate counts.
 
+## Dashboard
+
+_Tableau Public link and screenshot to be added in the Share phase._ Build steps: [docs/tableau_build_guide.md](docs/tableau_build_guide.md).
+
 ## Repository layout
 
 ```
@@ -46,8 +50,10 @@ toronto-building-permits/
   docs/
     cleaning_log.md    every cleaning step and the rows it affected
     data_dictionary.md raw and derived columns
+    tableau_build_guide.md  step-by-step dashboard build
   scripts/
     download_data.py   fetches both datasets from the City's open data API
+    export_tableau.py  builds the permit-level data source for the dashboard
 ```
 
 ## How to reproduce (Windows)
@@ -66,6 +72,6 @@ jupyter notebook notebooks\01_cleaning.ipynb
 |---|---|---|
 | Ask, Prepare | Done | Case study document |
 | Process | Done | `scripts/download_data.py`, `notebooks/01_cleaning.ipynb`, `docs/` |
-| Analyze | In progress | `notebooks/02_analysis.ipynb`, `outputs/summary_tables/` |
-| Share | Not started | Tableau Public dashboard |
+| Analyze | Done | `notebooks/02_analysis.ipynb`, `outputs/summary_tables/` |
+| Share | In progress | Tableau Public dashboard |
 | Act | Not started | Write-up, slide deck, portfolio page |
