@@ -1,0 +1,21 @@
+# Raw data is large and can always be re-downloaded with scripts/download_data.py
+data/raw/*
+!data/raw/.gitkeep
+
+# The cleaned CSV is too large for GitHub (100 MB file limit). It is rebuilt by
+# running notebooks/01_cleaning.ipynb. Small summary tables in outputs/ ARE committed.
+data/clean/*
+!data/clean/.gitkeep
+
+# Python and Jupyter clutter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db
