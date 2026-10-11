@@ -1,0 +1,5 @@
+sector,permits,median,p25,p75,p90
+Unknown,10776,20.0,9.0,49.0,120.0
+Residential,108659,20.0,6.0,50.0,131.0
+Non-residential,37476,29.0,15.0,49.0,98.0
+Mixed use,579,285.0,97.0,731.5,1255.4

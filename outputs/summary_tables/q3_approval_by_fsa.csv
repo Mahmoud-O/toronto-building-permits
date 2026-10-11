@@ -1,0 +1,175 @@
+fsa,permits,median,p25,p75,p90,work_category
+M1C,683,15.0,8.0,49.0,104.0,Renovation / alteration
+M5X,91,16.0,7.5,28.0,32.0,Renovation / alteration
+M1X,226,17.0,8.0,46.0,107.5,Renovation / alteration
+M6S,1326,18.0,8.0,40.0,86.5,Renovation / alteration
+M4T,645,19.0,9.0,34.0,58.0,Renovation / alteration
+M5M,659,19.0,8.0,46.0,83.0,Renovation / alteration
+M4J,1395,20.0,8.0,41.0,90.0,Renovation / alteration
+M4E,988,20.0,8.0,43.0,86.30000000000007,Renovation / alteration
+M5H,1382,20.0,11.0,32.0,47.0,Renovation / alteration
+M6P,1315,20.0,8.0,44.0,89.60000000000014,Renovation / alteration
+M4K,1253,20.0,8.0,41.0,84.0,Renovation / alteration
+M4C,1424,21.0,9.0,44.0,95.0,Renovation / alteration
+M6G,1387,21.0,8.0,45.0,97.0,Renovation / alteration
+M4S,778,21.0,10.0,39.0,80.20000000000027,Renovation / alteration
+M4L,1340,21.0,8.0,46.0,105.10000000000014,Renovation / alteration
+M4R,340,21.0,8.0,48.0,87.20000000000005,Renovation / alteration
+M6R,1138,21.0,9.0,42.0,79.0,Renovation / alteration
+M4V,791,22.0,10.0,40.0,73.0,Renovation / alteration
+M6H,1539,22.0,8.0,48.0,112.0,Renovation / alteration
+M5G,1035,23.0,11.0,41.0,59.60000000000002,Renovation / alteration
+M5C,589,23.0,13.0,35.0,54.200000000000045,Renovation / alteration
+M2P,212,23.0,11.0,38.25,67.70000000000002,Renovation / alteration
+M1W,449,23.0,10.0,46.0,96.19999999999999,Renovation / alteration
+M1M,394,23.0,9.0,55.75,107.39999999999998,Renovation / alteration
+M6C,833,23.0,10.0,48.0,86.0,Renovation / alteration
+M5P,544,23.5,11.0,41.0,89.0,Renovation / alteration
+M5N,389,24.0,11.0,54.0,94.19999999999993,Renovation / alteration
+M4W,1118,24.0,13.0,39.0,75.0,Renovation / alteration
+M2M,448,24.0,11.0,49.0,86.60000000000002,Renovation / alteration
+M6J,1398,25.0,11.0,49.0,104.0,Renovation / alteration
+M3A,417,25.0,10.0,47.0,90.80000000000007,Renovation / alteration
+M6E,1010,25.0,11.0,53.0,120.10000000000002,Renovation / alteration
+M9B,700,25.0,10.0,45.0,82.10000000000002,Renovation / alteration
+M9C,965,26.0,11.0,43.0,79.0,Renovation / alteration
+M3L,118,26.0,9.25,58.5,128.39999999999998,Renovation / alteration
+M2L,215,27.0,11.0,57.0,127.79999999999993,Renovation / alteration
+M8Y,535,27.0,12.0,54.0,109.60000000000002,Renovation / alteration
+M4M,1054,27.0,10.0,54.0,122.80000000000018,Renovation / alteration
+M8X,404,27.0,12.0,44.25,81.39999999999998,Renovation / alteration
+M9R,395,27.0,9.0,54.0,109.40000000000009,Renovation / alteration
+M5J,1002,27.0,14.0,36.0,57.89999999999998,Renovation / alteration
+M4G,590,27.0,10.25,49.0,94.10000000000002,Renovation / alteration
+M1E,666,27.5,10.0,56.0,128.5,Renovation / alteration
+M7A,30,27.5,11.75,56.75,87.10000000000002,Renovation / alteration
+M1G,319,28.0,13.0,57.0,126.19999999999999,Renovation / alteration
+M1N,604,28.0,11.0,63.0,128.0,Renovation / alteration
+M9P,304,28.0,11.75,47.0,84.39999999999998,Renovation / alteration
+M8V,797,28.0,12.0,55.0,93.0,Renovation / alteration
+M6K,922,28.0,12.25,50.0,114.79999999999995,Renovation / alteration
+M1B,719,28.0,11.0,59.0,129.20000000000005,Renovation / alteration
+M1T,376,28.0,10.75,56.0,97.0,Renovation / alteration
+M5R,1158,28.0,14.0,50.0,96.0,Renovation / alteration
+M5A,920,28.0,15.0,50.0,107.0,Renovation / alteration
+M3H,615,28.0,12.0,52.0,102.60000000000002,Renovation / alteration
+M2N,1292,28.0,14.0,46.0,88.90000000000009,Renovation / alteration
+M2J,945,28.0,12.0,48.0,96.0,Renovation / alteration
+M2K,326,28.0,13.0,45.75,90.0,Renovation / alteration
+M9A,564,28.5,12.0,49.0,87.39999999999998,Renovation / alteration
+M5E,304,29.0,15.0,40.0,73.79999999999995,Renovation / alteration
+M3B,498,29.0,12.0,55.0,95.30000000000001,Renovation / alteration
+M2R,341,29.0,14.0,52.0,97.0,Renovation / alteration
+M2H,373,29.0,12.0,49.0,88.20000000000005,Renovation / alteration
+M1S,414,29.0,11.0,62.0,135.7,Renovation / alteration
+M4X,297,29.0,15.0,59.0,121.4000000000002,Renovation / alteration
+M6B,454,29.0,13.0,56.0,92.69999999999999,Renovation / alteration
+M4B,424,29.0,13.0,56.0,103.09999999999997,Renovation / alteration
+M5B,538,29.0,15.0,46.0,72.0,Renovation / alteration
+M5S,924,29.0,14.0,50.0,85.0,Renovation / alteration
+M6A,711,29.0,15.0,50.0,88.0,Renovation / alteration
+M1V,551,30.0,12.0,59.0,111.0,Renovation / alteration
+M5V,1295,30.0,16.0,49.0,85.20000000000027,Renovation / alteration
+M1K,542,30.0,12.0,64.75,163.60000000000014,Renovation / alteration
+M4P,603,30.0,15.0,50.5,97.0,Renovation / alteration
+M4A,270,30.0,13.25,53.75,99.0,Renovation / alteration
+M4H,125,30.0,16.0,55.0,107.00000000000013,Renovation / alteration
+M4N,543,31.0,13.0,57.0,104.40000000000003,Renovation / alteration
+M9L,210,31.0,13.0,60.75,119.19999999999999,Renovation / alteration
+M3C,499,31.0,18.0,60.0,100.19999999999999,Renovation / alteration
+M4Y,449,31.0,17.0,59.0,124.39999999999998,Renovation / alteration
+M6N,877,31.0,13.0,69.0,149.0,Renovation / alteration
+M8W,553,31.0,12.0,62.0,119.40000000000003,Renovation / alteration
+M1H,357,32.0,13.0,57.0,125.80000000000007,Renovation / alteration
+M5T,769,32.0,20.0,55.0,117.0,Renovation / alteration
+M3M,261,32.0,15.0,56.0,99.0,Renovation / alteration
+M1P,839,32.0,14.0,57.0,113.0,Renovation / alteration
+M1R,623,33.0,13.0,68.5,141.60000000000048,Renovation / alteration
+M6L,215,33.0,14.0,71.0,171.79999999999987,Renovation / alteration
+M1J,335,34.0,14.0,75.5,158.60000000000014,Renovation / alteration
+M1L,539,34.0,14.0,68.5,130.2,Renovation / alteration
+M6M,552,34.5,14.0,72.25,146.90000000000003,Renovation / alteration
+M3N,256,35.0,15.75,64.25,126.5,Renovation / alteration
+M8Z,696,35.0,15.0,68.25,132.0,Renovation / alteration
+M9W,1033,35.0,15.0,64.0,118.80000000000007,Renovation / alteration
+M3K,148,36.0,16.0,71.0,120.90000000000038,Renovation / alteration
+M9M,220,36.0,15.75,77.0,153.79999999999995,Renovation / alteration
+M9N,400,36.0,15.0,75.0,156.30000000000007,Renovation / alteration
+M9V,547,36.0,14.0,76.0,147.80000000000007,Renovation / alteration
+M3J,530,37.5,21.0,76.75,137.0,Renovation / alteration
+M6K,61,20.0,20.0,97.0,238.0,New construction
+M5N,136,35.0,23.0,62.0,109.5,New construction
+M4N,112,41.0,26.75,65.75,110.80000000000001,New construction
+M8X,77,46.0,21.0,81.0,546.0,New construction
+M3B,155,47.0,33.0,79.0,126.6,New construction
+M8Z,253,48.0,28.0,98.0,246.40000000000032,New construction
+M9A,218,48.0,27.0,100.75,214.80000000000007,New construction
+M5M,333,49.0,28.0,80.0,165.40000000000003,New construction
+M5P,106,49.0,28.25,77.75,203.0,New construction
+M9B,295,50.0,28.0,85.0,258.6000000000008,New construction
+M4G,164,50.0,29.5,128.75,316.0,New construction
+M2R,208,50.5,34.0,90.25,192.20000000000005,New construction
+M8Y,124,52.0,22.75,111.75,173.60000000000002,New construction
+M2P,67,52.0,29.5,85.0,152.39999999999998,New construction
+M2N,463,53.0,29.0,98.0,256.20000000000016,New construction
+M6B,177,54.0,28.0,106.0,247.80000000000007,New construction
+M4B,81,54.0,34.0,113.0,233.0,New construction
+M6C,169,55.0,27.0,98.0,217.0000000000005,New construction
+M1R,95,56.0,39.5,140.5,319.2000000000004,New construction
+M9M,49,56.0,29.0,141.0,317.20000000000005,New construction
+M8V,163,56.0,33.0,100.0,221.6000000000002,New construction
+M4V,81,58.0,32.0,292.0,1022.0,New construction
+M6L,74,58.5,40.25,91.25,243.40000000000006,New construction
+M2M,187,59.0,29.0,92.5,190.20000000000002,New construction
+M9P,58,60.0,34.0,94.25,151.90000000000015,New construction
+M4S,98,62.5,44.0,141.0,712.0,New construction
+M1M,122,63.0,33.5,155.0,328.4000000000001,New construction
+M4C,158,63.5,37.25,119.0,211.80000000000007,New construction
+M3M,38,63.5,37.75,140.25,271.0000000000001,New construction
+M1N,180,64.0,38.0,135.0,357.6999999999998,New construction
+M4J,157,65.0,36.0,128.0,273.00000000000006,New construction
+M1T,39,65.0,38.5,161.0,956.0,New construction
+M6S,93,65.0,40.0,126.0,222.39999999999998,New construction
+M8W,313,66.0,40.0,119.0,261.6,New construction
+M3A,47,67.0,34.0,175.5,334.79999999999995,New construction
+M4R,98,67.5,31.25,202.25,396.6,New construction
+M6E,218,71.0,41.0,114.0,305.90000000000003,New construction
+M4K,74,73.5,44.25,167.75,310.4000000000001,New construction
+M4E,84,74.0,45.0,129.25,347.70000000000005,New construction
+M1K,94,75.5,46.0,216.25,290.1,New construction
+M1S,67,76.0,42.0,138.5,245.0,New construction
+M4L,97,76.0,39.0,173.0,360.60000000000014,New construction
+M9V,43,82.0,46.5,139.5,281.00000000000017,New construction
+M2J,137,83.0,59.0,322.0,412.0,New construction
+M1B,105,83.0,30.0,372.0,405.40000000000043,New construction
+M6H,150,84.0,48.0,152.0,379.3999999999999,New construction
+M6P,113,85.0,43.0,183.0,403.8,New construction
+M4A,30,87.0,40.75,413.0,446.0,New construction
+M9C,34,88.0,49.0,202.75,627.0999999999999,New construction
+M1L,135,88.0,50.5,229.0,449.80000000000035,New construction
+M6J,96,88.5,38.5,167.0,387.0,New construction
+M6N,101,89.0,44.0,141.0,195.0,New construction
+M6M,100,90.5,49.5,167.75,306.8000000000005,New construction
+M6G,132,96.5,52.25,193.0,351.2000000000001,New construction
+M1J,42,100.5,49.75,238.0,1099.0999999999992,New construction
+M9W,59,109.0,56.5,221.5,472.0000000000002,New construction
+M1C,179,114.0,57.0,281.0,431.0,New construction
+M3H,420,115.0,35.0,414.0,427.0,New construction
+M1E,110,116.5,63.25,279.0,401.0,New construction
+M5T,72,117.0,4.0,1034.0,1035.0,New construction
+M5R,52,121.0,59.5,514.0,806.0,New construction
+M1X,41,123.0,123.0,147.0,147.0,New construction
+M4M,67,131.0,85.0,222.0,575.3999999999997,New construction
+M9R,32,131.5,56.75,265.5,514.8000000000001,New construction
+M5S,32,137.5,79.75,455.25,665.0000000000001,New construction
+M4P,54,151.5,44.0,539.75,743.8000000000002,New construction
+M9N,64,152.0,47.0,407.5,750.4000000000001,New construction
+M2K,195,152.0,43.5,435.5,666.0,New construction
+M5A,44,170.0,35.0,670.25,1088.1,New construction
+M1P,299,175.0,153.0,308.0,601.0,New construction
+M9L,33,224.0,63.0,225.0,363.6,New construction
+M3C,161,233.0,161.0,238.0,897.0,New construction
+M6R,89,243.0,71.0,399.0,402.0,New construction
+M6A,429,263.0,56.0,589.0,801.0,New construction
+M3K,82,273.5,91.5,300.0,301.0,New construction
+M2L,272,1738.0,289.25,1777.0,1778.0,New construction
