@@ -51,3 +51,4 @@ Every step in `notebooks/01_cleaning.ipynb` that changes or removes rows, with r
 - **Blank postal codes:** concentrated in Conditional Permits (41% blank) and New Building permits (22% blank). FSA maps will under-count new buildings; state this as a limitation.
 - **Non-numeric revision numbers (7 rows):** sorted so they are never chosen as the latest revision. This changed which row was kept for one admin-type permit, so step 5 removed 519 rows instead of 520.
 - **Partial permits** are mapped to New construction, on the assumption that they are staged permits for large new buildings (foundation, shoring, framing).
+- **Per-unit permits:** some townhouse developments file one New Houses permit per unit. In M2L, about 200 such permits from 2019 come from one development. Counts are left as published; this is noted where it affects results.

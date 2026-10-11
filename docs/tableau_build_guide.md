@@ -11,13 +11,7 @@ The Share phase deliverable is one Tableau Public dashboard with four views. Eac
 
 ## 0. Before you start
 
-**Check the M2L outlier.** In the analysis, new construction in M2L had a median approval time of 1,738 days. Run this from the repo root to see what is behind it:
-
-```
-py -c "import pandas as pd; d=pd.read_csv('data/clean/permits_clean.csv', low_memory=False); m=d[(d.fsa=='M2L')&(d.work_category=='New construction')&(d.is_revision.astype(str)=='False')]; print(m.groupby(['app_year','PERMIT_TYPE']).size()); print(m['approval_days'].describe()); print(m['DESCRIPTION'].value_counts().head(5))"
-```
-
-If most rows share an application date and description, it is one large development filed as many permits. That is worth one sentence in the write-up, not a change to the data.
+**M2L outlier (checked).** The 1,738-day median for new construction in M2L comes from one stacked back-to-back townhouse development: about 200 New Houses permits applied for in 2019, one per unit, issued roughly 4.8 years later. Mention it in a tooltip or footnote if M2L stands out in a view.
 
 **Create the data file.** Tableau needs one row per permit so it can compute real medians and growth rates at any level:
 
