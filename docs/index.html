@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toronto Building Permits</title>
+<meta name="description" content="A data analytics case study on where construction demand is growing in Toronto, using City of Toronto building permit data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+<style>
+/* Layout: one reading column (about 66ch) for the story; figures and the results strip break out to a wider measure. */
+:root {
+  --bg: #F4F6F9;
+  --surface: #FFFFFF;
+  --ink: #14213D;
+  --muted: #4E5A6E;
+  --rule: #D5DBE5;
+  --accent: #1C5CAB;
+  --hot: #C4501F;
+  --chip: #E3EAF4;
+  --display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+  --mono: "IBM Plex Mono", Consolas, "Courier New", monospace;
+  --read: 42rem;
+  --wide: 64rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1729; --surface: #18233A; --ink: #E8EDF5; --muted: #A5B0C2;
+    --rule: #2C3A55; --accent: #7FB0F0; --hot: #F2915F; --chip: #22314F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1729; --surface: #18233A; --ink: #E8EDF5; --muted: #A5B0C2;
+  --rule: #2C3A55; --accent: #7FB0F0; --hot: #F2915F; --chip: #22314F;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  padding-inline: 20px;
+  padding-block: 0 4rem;
+}
+main { display: flex; flex-direction: column; gap: 3.5rem; }
+.col { width: 100%; max-width: var(--read); margin-inline: auto; display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+.wide { width: 100%; max-width: var(--wide); margin-inline: auto; min-width: 0; }
+
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.2rem, 5.5vw, 3.6rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.1rem); }
+h3 { font-size: 1.25rem; }
+p, ul, ol { margin: 0; }
+ul, ol { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, .btn:focus-visible { outline: 3px solid var(--hot); outline-offset: 3px; }
+.eyebrow { font-family: var(--mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.muted { color: var(--muted); }
+.fsa { font-family: var(--mono); font-size: 0.92em; background: var(--chip); padding: 0.05em 0.35em; border-radius: 4px; white-space: nowrap; }
+code { font-family: var(--mono); font-size: 0.9em; }
+
+/* Header */
+header { padding-block: 4rem 0; }
+header .col { gap: 1.25rem; }
+.lede { font-size: 1.2rem; color: var(--muted); max-width: 38rem; }
+.byline { font-size: 0.95rem; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; padding-top: 0.5rem; }
+.btn { display: inline-flex; align-items: center; padding: 0.6rem 1.1rem; border-radius: 6px; font-weight: 600; font-size: 0.95rem; text-decoration: none; border: 1.5px solid var(--accent); color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--bg); }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1rem 2rem; border-top: 1px solid var(--rule); padding-top: 1.25rem; margin-top: 0.75rem; }
+.meta dt { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.meta dd { margin: 0.2rem 0 0; font-size: 0.95rem; }
+
+/* Results strip */
+.results { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.results div { padding: 1.25rem 1.25rem 1.25rem 0; display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
+.results b { font-family: var(--display); font-size: 2.3rem; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.results div:first-child b { color: var(--hot); }
+.results span { font-size: 0.92rem; color: var(--muted); line-height: 1.45; }
+
+/* Figures: charts were drawn on white, so they sit on a white sheet in both themes */
+figure { margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+figure .sheet { background: #FFFFFF; border: 1px solid var(--rule); border-radius: 8px; padding: 0.75rem; }
+figure img { display: block; width: 100%; height: auto; }
+figcaption { font-size: 0.88rem; color: var(--muted); max-width: var(--read); }
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 1.5rem; }
+
+/* Steps in the cleaning pipeline are a real sequence, so they are numbered */
+.steps { list-style: none; padding: 0; gap: 0; border-top: 1px solid var(--rule); }
+.steps li { display: grid; grid-template-columns: 2rem 1fr auto; gap: 0.75rem; align-items: baseline; padding-block: 0.7rem; border-bottom: 1px solid var(--rule); }
+.steps .n { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); }
+.steps .rows { font-family: var(--mono); font-size: 0.88rem; font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.steps .what { min-width: 0; }
+
+.finding { display: flex; flex-direction: column; gap: 0.75rem; }
+.callout { border-left: 3px solid var(--hot); padding: 0.25rem 0 0.25rem 1rem; }
+.recs { counter-reset: r; list-style: none; padding: 0; gap: 0.9rem; }
+.recs li { counter-increment: r; display: grid; grid-template-columns: 2.25rem 1fr; gap: 0.5rem; }
+.recs li::before { content: counter(r); font-family: var(--display); font-weight: 600; font-size: 1.5rem; line-height: 1.2; color: var(--hot); }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.25rem 2rem; }
+.skills div { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.skills h3 { font-family: var(--body); font-size: 0.95rem; font-weight: 600; }
+.skills p { font-size: 0.95rem; color: var(--muted); }
+
+footer { border-top: 1px solid var(--rule); padding-top: 1.5rem; font-size: 0.9rem; color: var(--muted); }
+
+@media (max-width: 560px) {
+  .steps li { grid-template-columns: 1.5rem 1fr; }
+  .steps .rows { grid-column: 2; text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="col">
+    <p class="eyebrow">Data analytics case study</p>
+    <h1>Where is construction demand growing in Toronto?</h1>
+    <p class="lede">I cleaned nearly ten years of City of Toronto building permits and turned them into a territory plan for a building supply company: which areas are growing, what kind of work is driving it, and how fast permits move.</p>
+    <p class="byline">By Mahmoud, Economics and Physics graduate, University of Toronto. Capstone for the Google Data Analytics Professional Certificate.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://public.tableau.com/views/TorontoBuildingPermitsWhereConstructionDemandIsGrowing/Dashboard1">Open the dashboard</a>
+      <a class="btn" href="https://github.com/Mahmoud-O/toronto-building-permits">View the code on GitHub</a>
+    </div>
+    <dl class="meta">
+      <div><dt>Data</dt><dd>City of Toronto Open Data, 2017 to 2026</dd></div>
+      <div><dt>Tools</dt><dd>Python (pandas, statsmodels), Tableau Public, Git</dd></div>
+      <div><dt>Scale</dt><dd>646,015 raw rows, 388,263 clean permits</dd></div>
+      <div><dt>Territory unit</dt><dd>FSA, e.g. <span class="fsa">M3C</span></dd></div>
+    </dl>
+  </div>
+</header>
+
+<main>
+  <section class="wide" aria-label="Key results">
+    <div class="results">
+      <div><b>+74%</b><span>Permit growth in <span class="fsa">M3C</span>, against +1.4% for the city (2022-23 vs 2024-25)</span></div>
+      <div><b>43%</b><span>Of recent declared value sits in 10 of 98 FSAs</span></div>
+      <div><b>83 vs 27</b><span>Median days to approve new construction vs a renovation</span></div>
+      <div><b>May to Aug</b><span>Busiest months, 7 to 12% above an average month</span></div>
+    </div>
+  </section>
+
+  <section class="col">
+    <p class="eyebrow">Ask</p>
+    <h2>The business question</h2>
+    <p>A Toronto building supply company wants to put its sales reps and inventory where construction demand is growing. Building permits are a leading signal of that demand: a permit is filed before materials are bought.</p>
+    <p>I broke the task into four questions:</p>
+    <ol>
+      <li>Where is permit activity concentrated, and where is it growing?</li>
+      <li>What kind of work is it: residential or not, new construction or renovation?</li>
+      <li>How long do permits take to approve, and does that vary by type?</li>
+      <li>How have volumes and values changed over time, and is there a season?</li>
+    </ol>
+    <p>The territory unit is the Forward Sortation Area (FSA), the first three characters of a postal code, because it is the smallest area the permit data reliably carries.</p>
+  </section>
+
+  <section class="col">
+    <p class="eyebrow">Prepare and process</p>
+    <h2>Two files, one clean table</h2>
+    <p>The City publishes active permits (refreshed daily) and cleared permits as separate files with the same 32 columns. A script downloads both through the City's open data API, and a notebook cleans them. Each step that removes rows is logged with counts.</p>
+    <ol class="steps">
+      <li><span class="n">1</span><span class="what">Combine the Active and Cleared files</span><span class="rows">646,015</span></li>
+      <li><span class="n">2</span><span class="what">Keep applications from 2017 onward</span><span class="rows">437,705</span></li>
+      <li><span class="n">3</span><span class="what">Keep the latest revision of each permit; when both files hold the same revision, keep the Cleared copy</span><span class="rows">388,782</span></li>
+      <li><span class="n">4</span><span class="what">Drop administrative record types that are not construction</span><span class="rows">388,263</span></li>
+    </ol>
+    <p>The harder problems did not remove rows:</p>
+    <ul>
+      <li><strong>Placeholder costs.</strong> The cost column is text, and about 210,000 rows hold the phrase "DO NOT UPDATE OR DELETE THIS INFO FIELD" instead of a number. These became missing values, not zeros, and value analysis uses declared costs only.</li>
+      <li><strong>Implausible outliers.</strong> A $1B sprinkler permit and a $500M retail interior job did not fit their descriptions, so I set those two costs to missing and recorded why.</li>
+      <li><strong>Inflated counts.</strong> About 175,000 trade permits (plumbing, HVAC) belong to a main building permit. I flagged them and excluded them from demand counts, along with cancelled permits, leaving 191,381 permits.</li>
+      <li><strong>Per-unit filings.</strong> One area showed a 1,738-day median approval time. It turned out to be about 200 permits from 2019 for a single townhouse development, filed one per unit.</li>
+    </ul>
+    <p class="muted">Full detail: <a href="https://github.com/Mahmoud-O/toronto-building-permits/blob/main/docs/cleaning_log.md">cleaning log</a> and <a href="https://github.com/Mahmoud-O/toronto-building-permits/blob/main/docs/data_dictionary.md">data dictionary</a>.</p>
+  </section>
+
+  <section class="col">
+    <p class="eyebrow">Analyze</p>
+    <h2>What the permits say</h2>
+  </section>
+
+  <section class="col finding">
+    <h3>1. Growth is local, not city-wide</h3>
+    <p>City-wide permits rose only 1.4% from 2022-2023 to 2024-2025. Several FSAs grew far faster: <span class="fsa">M3C</span> (+74%), <span class="fsa">M4A</span> (+57%) and <span class="fsa">M9A</span> (+53%). <span class="fsa">M3C</span> also ranks second by declared value, with $1.64B and 90 new construction permits in 2024-2025.</p>
+    <p class="muted">I measured growth on permit counts rather than dollars, so one large tower cannot decide the ranking, and required at least 50 permits in the base years.</p>
+  </section>
+  <figure class="wide">
+    <div class="sheet"><img src="assets/q1_fsa_growth.png" alt="Bar chart of the fastest-growing FSAs by change in permit count, led by M3C at plus 74 percent, with the city average of plus 1.4 percent marked" width="1050" height="825" loading="lazy"></div>
+    <figcaption>Change in permit count by FSA, 2022-2023 vs 2024-2025. FSAs with at least 50 permits in the base years.</figcaption>
+  </figure>
+
+  <section class="col finding">
+    <h3>2. Renovation is the volume, new construction is the value</h3>
+    <p>Residential work is 69% of permits but only 35% of declared value. New construction is 10% of permits but 64% of value. Renovation is the steady base: its share of permits rose from 41% to 47-48% over the period.</p>
+    <p>Total permits fell from 23,804 in 2017 to 18,109 in 2025, while declared value rose from $6.8B to $16.9B in nominal dollars. Fewer projects, but larger ones.</p>
+  </section>
+  <section class="wide pair">
+    <figure>
+      <div class="sheet"><img src="assets/q4_annual_by_work_category.png" alt="Stacked chart of annual permits by type of work from 2017 to 2025, showing totals declining while renovation's share grows" width="1200" height="675" loading="lazy"></div>
+      <figcaption>Annual permits by type of work, full years only.</figcaption>
+    </figure>
+    <figure>
+      <div class="sheet"><img src="assets/q3_approval_by_category.png" alt="Bar chart of median approval days by type of work: building services 4, addition 26, renovation 27, demolition 57, new construction 83" width="1050" height="600" loading="lazy"></div>
+      <figcaption>Median days from application to issue, issued permits that were never revised.</figcaption>
+    </figure>
+  </section>
+
+  <section class="col finding">
+    <h3>3. New construction takes three times as long to approve</h3>
+    <p>The median new construction permit takes 83 days from application to issue, against 27 for a renovation and 4 for building services. Full "New Building" permits take a median of 389 days. A rep who follows a new building permit is following a project that may not buy materials for a year or more.</p>
+  </section>
+
+  <section class="col finding">
+    <h3>4. Demand is seasonal</h3>
+    <p>A seasonal decomposition of monthly permits shows May to August running 7 to 12% above an average month, and December and January 15 to 19% below. Renovation stock needs to be in place before May.</p>
+  </section>
+
+  <section class="col">
+    <p class="eyebrow">Share</p>
+    <h2>One dashboard, four views</h2>
+    <p>The Tableau Public dashboard puts the value map, the growth ranking, the monthly trend and approval times on one screen. Clicking an FSA on the map filters the other three views, so a sales manager can look at their own territory.</p>
+  </section>
+  <figure class="wide">
+    <div class="sheet"><img src="assets/dashboard.png" alt="Tableau dashboard with a map of declared value by FSA, the fastest-growing FSAs, monthly permits by type of work, and median approval days" width="1199" height="899" loading="lazy"></div>
+    <figcaption><a href="https://public.tableau.com/views/TorontoBuildingPermitsWhereConstructionDemandIsGrowing/Dashboard1">Open the interactive version on Tableau Public</a>.</figcaption>
+  </figure>
+
+  <section class="col">
+    <p class="eyebrow">Act</p>
+    <h2>Recommendations</h2>
+    <ol class="recs">
+      <li><span><strong>Put reps where permits are growing, starting with <span class="fsa">M3C</span></strong>, then <span class="fsa">M9A</span>, <span class="fsa">M1M</span> and <span class="fsa">M6M</span>, which combine growth with new construction.</span></li>
+      <li><span><strong>Stock for renovation first, and before the May to August peak.</strong> It is the steadiest, fastest-moving demand.</span></li>
+      <li><span><strong>Treat the big-value areas as account plays, not territories.</strong> Their value often rests on one large project with a long approval time.</span></li>
+    </ol>
+    <p class="callout">The first step is a pilot: one rep in <span class="fsa">M3C</span>, and a comparison of the company's own sales by FSA against permit counts. That tests the assumption the whole analysis rests on, that permits lead sales.</p>
+  </section>
+
+  <section class="col">
+    <h2>Limits</h2>
+    <ul>
+      <li>Permits signal intent, not purchases.</li>
+      <li>Declared costs are self-reported and in nominal dollars, not adjusted for inflation.</li>
+      <li>22% of New Building permits have no postal code, so FSA maps under-count new buildings.</li>
+      <li>Some developments file one permit per unit, which can inflate counts in a single area.</li>
+    </ul>
+    <p>Next, I would adjust values with Statistics Canada construction price indexes, add CMHC housing starts as a second signal, and refresh the data quarterly. The download and cleaning steps are scripted, so a refresh is a re-run.</p>
+  </section>
+
+  <section class="wide">
+    <div class="col" style="max-width: none; gap: 1.5rem;">
+      <h2>What this project shows</h2>
+      <div class="skills">
+        <div><h3>Cleaning real public data</h3><p>Combining two overlapping files, deduplicating revisions, and documenting every decision with row counts.</p></div>
+        <div><h3>Analysis in Python</h3><p>pandas for the pipeline, period-over-period growth with a minimum base, medians for skewed durations, statsmodels for seasonality.</p></div>
+        <div><h3>Dashboard design</h3><p>A filterable Tableau Public dashboard, including mapping Canadian FSAs, which Tableau reads as US ZIP codes by default.</p></div>
+        <div><h3>Business framing</h3><p>Turning findings into options with trade-offs, a recommendation, and a low-cost first step.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="col">
+    <p>Data: City of Toronto Open Data, <a href="https://open.toronto.ca/dataset/building-permits-active-permits/">Building Permits: Active Permits</a> and <a href="https://open.toronto.ca/dataset/building-permits-cleared-permits/">Building Permits: Cleared Permits</a>, under the Open Government Licence: Toronto. The building supply company is a hypothetical scenario.</p>
+  </footer>
+</main>
+</body>
+</html>

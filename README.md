@@ -2,6 +2,8 @@
 
 Capstone case study for the Google Data Analytics Professional Certificate, using real City of Toronto open data instead of the provided Cyclistic or Bellabeat datasets.
 
+**Portfolio page:** https://mahmoud-o.github.io/toronto-building-permits/ (served by GitHub Pages from `docs/index.html`)
+
 ## Scenario
 
 A Toronto building supply company wants to know where construction demand is growing so it can focus its sales reps and inventory.
@@ -66,6 +68,8 @@ toronto-building-permits/
     cleaning_log.md    every cleaning step and the rows it affected
     data_dictionary.md raw and derived columns
     tableau_build_guide.md  step-by-step dashboard build
+    index.html         portfolio page (GitHub Pages)
+    assets/            figures used by the portfolio page
   scripts/
     download_data.py   fetches both datasets from the City's open data API
     export_tableau.py  builds the permit-level data source for the dashboard
@@ -89,4 +93,4 @@ jupyter notebook notebooks\01_cleaning.ipynb
 | Process | Done | `scripts/download_data.py`, `notebooks/01_cleaning.ipynb`, `docs/` |
 | Analyze | Done | `notebooks/02_analysis.ipynb`, `outputs/summary_tables/` |
 | Share | Done | [Tableau Public dashboard](https://public.tableau.com/views/TorontoBuildingPermitsWhereConstructionDemandIsGrowing/Dashboard1) |
-| Act | Not started | Write-up, slide deck, portfolio page |
+| Act | In progress | Written case study, 5-minute deck, portfolio page (`docs/index.html`); LinkedIn post to come |
