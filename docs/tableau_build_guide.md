@@ -1,5 +1,20 @@
 # Tableau Public Dashboard: Build Guide
 
+**Published dashboard:** [Toronto Building Permits: Where Construction Demand Is Growing](https://public.tableau.com/views/TorontoBuildingPermitsWhereConstructionDemandIsGrowing/Dashboard1). Screenshot: `outputs/figures/dashboard.png`.
+
+## As built: differences from the plan below
+
+The dashboard was built in the **Tableau Public web editor**. Where it differs from the steps in this guide:
+
+| Step | Planned | As built |
+|---|---|---|
+| Country for FSAs | Map > Edit Locations | Calculated field `Country` = `"Canada"` with the Country/Region role, on Detail (the web editor has no Edit Locations) |
+| Colours | Custom palette (hex codes in section 3) | Tableau's default palettes: teal sequential for the map, default blue bars, Tableau 10 colours for work categories |
+| Monthly trend title | "...fell in 2020 and peak each May to August" | "Renovations lead every year; all work types fell in 2020". The May to August peak stays in the notebook findings |
+| Monthly trend range | Full months only | Runs through September 2026 (last full month), so it extends past the 2017 to 2025 range in the dashboard title |
+
+Everything else (data source, calculated fields, four sheets, sector filter, footer) follows the steps below.
+
 The Share phase deliverable is one Tableau Public dashboard with four views. Each answers one guiding question, and each title states the finding.
 
 | View | Question | Chart |
@@ -62,9 +77,10 @@ Colours: use one consistent palette (checked for colour-blind readers), always i
 
 ### Sheet 1: Value map
 1. Tell Tableau the FSAs are Canadian, otherwise it reads "M4S" as a US ZIP code and draws an empty world map:
-   - The export script adds a `country` column (always "Canada"). Right-click it > **Geographic Role > Country/Region**. (Older exports without it: create a calculated field `Country` = `"Canada"` instead.)
-   - Drag `country` to **Detail**, then double-click `fsa`.
-   - The Tableau web editor has no Edit Locations menu, so this column is the way to do it there. Tableau Desktop also offers **Map > Edit Locations > Country/Region: Canada**.
+   - Create a calculated field `Country` with the formula `"Canada"` (quotes included). This is what the published dashboard uses.
+   - Right-click `Country` > **Geographic Role > Country/Region**.
+   - Drag `Country` to **Detail**, then double-click `fsa`.
+   - The Tableau web editor has no Edit Locations menu, so the calculated field is the way to do it there. (Newer runs of `export_tableau.py` also include a `country` column that works the same way. In Tableau Desktop, **Map > Edit Locations > Country/Region: Canada** also works.)
    - Check the "unknown" indicator at the bottom right of the map. A few unknowns are fine (blank FSAs); most FSAs unknown means the country is still not set.
 2. Change the mark type to **Map** (filled).
 3. Drag `Value Recent` to **Colour**. Edit colours: Sequential, custom from `#cde2fb` to `#104281`.

@@ -32,7 +32,22 @@ Scope: permits applied for from 1 January 2017 onward. The two datasets are comb
 
 ## Dashboard
 
-_Tableau Public link and screenshot to be added in the Share phase._ Build steps: [docs/tableau_build_guide.md](docs/tableau_build_guide.md).
+**[View the interactive dashboard on Tableau Public](https://public.tableau.com/views/TorontoBuildingPermitsWhereConstructionDemandIsGrowing/Dashboard1)**
+
+![Dashboard: where Toronto construction demand is growing](outputs/figures/dashboard.png)
+
+How it was built: [docs/tableau_build_guide.md](docs/tableau_build_guide.md).
+
+## Key findings
+
+From `notebooks/02_analysis.ipynb` (cancelled permits and trade permits tied to a building permit excluded; values are declared, nominal dollars):
+
+- **Growth is local.** City-wide permits rose 1.4% from 2022-2023 to 2024-2025, but M3C (+74%), M4A (+57%) and M9A (+53%) grew far faster. M3C is also the second-largest area by recent declared value ($1.64B).
+- **Value is concentrated.** 10 of 98 FSAs hold 43% of 2024-2025 declared value.
+- **Residential leads in volume, not value.** Residential is 69% of permits but 35% of declared value; new construction is 10% of permits but 64% of value.
+- **New construction is slow to approve.** Median 83 days from application to issuance, about 3 times renovations (27 days).
+- **Fewer but larger projects.** 2025 permits were about 24% below 2017, while declared value rose from $6.8B to $16.9B. May to August is the busiest season.
+
 
 ## Repository layout
 
@@ -73,5 +88,5 @@ jupyter notebook notebooks\01_cleaning.ipynb
 | Ask, Prepare | Done | Case study document |
 | Process | Done | `scripts/download_data.py`, `notebooks/01_cleaning.ipynb`, `docs/` |
 | Analyze | Done | `notebooks/02_analysis.ipynb`, `outputs/summary_tables/` |
-| Share | In progress | Tableau Public dashboard |
+| Share | Done | [Tableau Public dashboard](https://public.tableau.com/views/TorontoBuildingPermitsWhereConstructionDemandIsGrowing/Dashboard1) |
 | Act | Not started | Write-up, slide deck, portfolio page |
