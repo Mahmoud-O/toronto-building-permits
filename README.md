@@ -93,4 +93,4 @@ jupyter notebook notebooks\01_cleaning.ipynb
 | Process | Done | `scripts/download_data.py`, `notebooks/01_cleaning.ipynb`, `docs/` |
 | Analyze | Done | `notebooks/02_analysis.ipynb`, `outputs/summary_tables/` |
 | Share | Done | [Tableau Public dashboard](https://public.tableau.com/views/TorontoBuildingPermitsWhereConstructionDemandIsGrowing/Dashboard1) |
-| Act | In progress | Written case study, 5-minute deck, portfolio page (`docs/index.html`); LinkedIn post to come |
+| Act | Done | Written case study, 5-minute deck, portfolio page (`docs/index.html`) |
